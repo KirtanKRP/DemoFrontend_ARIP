@@ -1,0 +1,25 @@
+/* PrepTalk's 1366 × 768 laptop baseline; dimensions are tuned, not globally scaled. */
+@media (max-width:820px) { .upload-card-content { display:block; } .resume-message { background:transparent; border:0; box-shadow:none; } }
+@media (min-width:821px) {
+  .upload-layout { grid-template-columns:minmax(0,1fr) 280px; align-items:stretch; }
+  .upload-layout>.setup-card { grid-row:auto; padding:0; } .upload-card-content { display:grid; grid-template-columns:minmax(0,2.15fr) minmax(210px,.85fr); min-height:100%; }
+  .upload-workflow { padding:20px 22px; } .resume-message { background:transparent; border:0; border-radius:0; box-shadow:none; padding:20px 22px; }
+  .quote-card { grid-column:auto!important; min-height:100%; }
+  .sidebar { width:256px; flex-basis:256px; padding:22px 23px 18px; }
+  .dash-wordmark { gap:10px; padding-bottom:20px; } .dash-wordmark b { font-size:25px; } .dash-mark { width:38px; height:38px; border-radius:9px; }
+  .sidebar-user { gap:12px; padding:16px 0; } .sidebar-user>span { width:44px; height:44px; border-radius:11px; font-size:21px; } .sidebar-user b { font-size:15px; } .sidebar-user small { font-size:11px; }
+  .side-nav { padding-top:16px; } .side-nav p { font-size:10px; margin-bottom:10px; } .side-nav p:nth-of-type(2) { margin-top:22px; }
+  .side-nav button { height:49px; font-size:14px; border-radius:13px; gap:13px; margin:2px 0; padding:0 8px; } .side-nav button>span { width:34px; height:34px; border-radius:9px; } .side-nav button svg { width:18px; height:18px; }
+  .logout { font-size:14px; gap:14px; padding:8px; } .side-script { font-size:21px; margin:22px auto 4px; } .side-script svg { width:126px; height:17px; }
+  .dashboard-content { max-width:1280px; padding:24px 30px 48px; } .page-heading { margin-bottom:18px; } .page-heading p { font-size:11px; margin-bottom:4px; } .page-heading h1 { font-size:46px; line-height:.96; } .page-heading>span { font-size:17px; margin-top:7px; } .page-heading>i { font-size:24px; right:5px; }
+  .upload-layout { gap:14px; } .setup-card { padding:0; } .setup-card--manual { padding:0; } .setup-title { gap:15px; } .round-icon { width:56px; height:56px; } .setup-title h2 { font-size:25px; } .setup-title p { font-size:14px; margin-top:5px; }
+  .manual-heading { gap:15px; margin-bottom:20px; } .manual-heading p { font-size:14px; margin-top:5px; }
+  .fields-grid { gap:16px 20px; } .manual-field { font-size:13px; } .manual-field>span { height:48px; border-radius:12px; margin-top:6px; padding-left:14px; } .manual-field input,.manual-field select { font-size:14px; }
+  .manual-actions { margin-top:30px; } .secondary-button,.continue { height:44px; padding:0 21px; border-radius:12px; font-size:14px; gap:10px; } .continue { min-width:160px; } .continue span { font-size:19px; }
+  .drop-zone { min-height:218px; margin-top:17px; gap:7px; } .drop-zone .round-icon { width:54px; height:54px; } .drop-zone p { font-size:15px; } .drop-zone small { font-size:11px; } .black-button { min-height:44px; border-radius:12px; padding:0 21px; font-size:14px; }
+  .or-divider { gap:16px; margin:18px 0 13px; } .resume-select>span { font-size:13px; gap:10px; margin-bottom:7px; } .resume-select select { height:48px; border-radius:12px; font-size:14px; } .resume-continue { height:42px; margin-top:12px; font-size:13px; }
+  .resume-art { height:145px; } .resume-art>b,.resume-art>em { width:135px; height:112px; } .art-paper { width:103px; height:140px; border-radius:13px; padding:30px 17px 9px; } .art-paper i { height:5px; margin:8px 0; } .art-avatar { width:23px; height:23px; top:12px; left:16px; } .art-paper small { width:16px; height:16px; bottom:14px; right:16px; } .resume-message h2 { font-size:25px; margin:10px 0 7px; } .resume-message p { font-size:14px; line-height:1.4; }
+  .quote-card { padding:19px 22px; border-radius:16px; } .quote-card>b { font-size:42px; } .quote-card>p { font-size:27px; } .quote-card .swoop { width:70px; margin-left:104px; } .quote-card hr { margin:10px 0 14px; } .quote-card h3 { font-size:14px; margin-bottom:9px; } .mini-step { gap:10px; font-size:12px; margin:8px 0; } .mini-step span { width:30px; height:30px; }
+  .manual-card { margin-top:14px; min-height:88px; padding:15px 18px; gap:14px; } .manual-card .round-icon { width:48px; height:48px; } .manual-card h2 { font-size:21px; } .manual-card p { font-size:12px; margin-top:5px; } .manual-card>b { font-size:12px; } .manual-card>b span { font-size:22px; }
+  .timeline { margin-top:22px; padding:25px 28px 28px; } .timeline h2 { font-size:29px; } .timeline>span { font-size:14px; } .configuration { margin-top:22px; padding:18px 22px; }
+}

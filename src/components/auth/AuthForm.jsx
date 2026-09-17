@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 /* ── Inline SVG icons ──────────────────────────────────────── */
 const EyeIcon = () => (
@@ -113,6 +114,7 @@ function PwField({ id, label, value, onChange, error, errId, autoComplete, right
 
 /* ── AuthForm ──────────────────────────────────────────────── */
 export default function AuthForm({ mode, onSwitch }) {
+  const navigate = useNavigate()
   const isLogin = mode === 'login'
 
   const [fields, setFields] = useState({ name: '', email: '', password: '', confirmPassword: '' })
@@ -139,7 +141,14 @@ export default function AuthForm({ mode, onSwitch }) {
      * On success: navigate('/dashboard') or navigate(location.state?.redirect ?? '/')
      */
     console.info('[PrepTalk Auth] Ready for backend integration.', { mode, email: fields.email })
-    setTimeout(() => setLoading(false), 1200)
+    setTimeout(() => {
+      localStorage.setItem('preptalk_user', JSON.stringify({
+        name: fields.name || fields.email.split('@')[0],
+        email: fields.email,
+        avatar: (fields.name || fields.email)[0].toLowerCase()
+      }))
+      setLoading(false); navigate('/interview/new')
+    }, 650)
   }
 
   /* ── Google ──────────────────────────────────────────────── */
@@ -148,7 +157,7 @@ export default function AuthForm({ mode, onSwitch }) {
      * INTEGRATION POINT — connect Google OAuth here.
      * e.g. signInWithPopup(auth, googleProvider)
      */
-    console.info('[PrepTalk Auth] Google auth — integration point.')
+    navigate('/interview/new')
   }
 
   /* ── Forgot password ─────────────────────────────────────── */

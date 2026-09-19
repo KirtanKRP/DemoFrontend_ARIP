@@ -6,6 +6,7 @@ import Overview from './pages/Overview'
 import InterviewDashboard from './pages/InterviewDashboard'
 import History from './pages/History'
 import Settings from './pages/Settings'
+import InterviewLive from './pages/InterviewLive'
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<Overview />} />
         <Route path="/interview/new" element={<InterviewDashboard />} />
+        <Route path="/interview/live" element={<InterviewLive />} />
         <Route path="/history" element={<History />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<Navigate to="/dashboard" replace />} />

@@ -111,7 +111,7 @@ export default function Overview() {
             <div className="stat-card">
               <span className="stat-card-icon"><Icon name="user" size={24} /></span>
               <div>
-                <b style={{ fontSize: '18px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '140px' }}>{safeUser.role || 'Software Eng'}</b>
+                <b style={{ fontSize: '18px', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis', wordBreak: 'break-word', lineHeight: 1.2 }}>{safeUser.role || 'Software Eng'}</b>
                 <small>Active Target Role</small>
               </div>
             </div>

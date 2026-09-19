@@ -24,7 +24,7 @@
     linear-gradient(rgba(221, 217, 208, .55) 1px, transparent 1px),
     linear-gradient(90deg, rgba(221, 217, 208, .55) 1px, transparent 1px);
   background-size: 58px 58px;
-  mask-image: linear-gradient(to bottom, transparent, rgba(0,0,0,.4) 15%, rgba(0,0,0,.4) 75%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, .4) 15%, rgba(0, 0, 0, .4) 75%, transparent);
   opacity: .12;
   pointer-events: none;
   z-index: 0;
@@ -96,8 +96,13 @@
   height: 8px;
 }
 
-.auth-wm-mark i:nth-child(2) { height: 13px; }
-.auth-wm-mark i:nth-child(3) { height: 6px; }
+.auth-wm-mark i:nth-child(2) {
+  height: 13px;
+}
+
+.auth-wm-mark i:nth-child(3) {
+  height: 6px;
+}
 
 /* ── Two-column shell ────────────────────────────────────── */
 
@@ -417,7 +422,7 @@
 .auth-spinner {
   width: 14px;
   height: 14px;
-  border: 1.5px solid rgba(255,255,255,.3);
+  border: 1.5px solid rgba(255, 255, 255, .3);
   border-top-color: #fff;
   border-radius: 50%;
   animation: authSpin .7s linear infinite;
@@ -469,7 +474,7 @@
 
 .auth-google:hover {
   border-color: #c8c5c2;
-  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
 }
 
 .auth-google-icon {
@@ -547,7 +552,7 @@
   will-change: transform, opacity;
   animation:
     dotEmerge var(--dot-dur, 3s) cubic-bezier(.34, 1.56, .64, 1) var(--dot-delay, 0s) both,
-    dotFloat  var(--dot-float, 4s) ease-in-out var(--dot-start, 3s) infinite alternate;
+    dotFloat var(--dot-float, 4s) ease-in-out var(--dot-start, 3s) infinite alternate;
 }
 
 @keyframes dotEmerge {
@@ -555,6 +560,7 @@
     opacity: 0;
     transform: translate(0, 0) scale(.2);
   }
+
   to {
     opacity: var(--dot-opacity, .45);
     transform: translate(var(--dot-tx, 0px), var(--dot-ty, 0px)) scale(1);
@@ -562,11 +568,14 @@
 }
 
 @keyframes dotFloat {
-  from { transform: translate(var(--dot-tx, 0px), var(--dot-ty, 0px)); }
-  to   { transform: translate(
-    calc(var(--dot-tx, 0px) + var(--dot-fx, 3px)),
-    calc(var(--dot-ty, 0px) + var(--dot-fy, 4px))
-  ); }
+  from {
+    transform: translate(var(--dot-tx, 0px), var(--dot-ty, 0px));
+  }
+
+  to {
+    transform: translate(calc(var(--dot-tx, 0px) + var(--dot-fx, 3px)),
+        calc(var(--dot-ty, 0px) + var(--dot-fy, 4px)));
+  }
 }
 
 /* ── Entry animations ────────────────────────────────────── */
@@ -577,17 +586,33 @@
 }
 
 @keyframes authEditorialIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes authFormIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes authSpin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ── Form panel fade on route switch ─────────────────────── */
@@ -606,6 +631,7 @@
 /* ── Reduced motion ──────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
+
   .auth-editorial,
   .auth-form-surface {
     animation: none;
@@ -618,8 +644,15 @@
   }
 
   @keyframes dotFadeOnly {
-    from { opacity: 0; transform: translate(var(--dot-tx, 0px), var(--dot-ty, 0px)); }
-    to   { opacity: var(--dot-opacity, .45); transform: translate(var(--dot-tx, 0px), var(--dot-ty, 0px)); }
+    from {
+      opacity: 0;
+      transform: translate(var(--dot-tx, 0px), var(--dot-ty, 0px));
+    }
+
+    to {
+      opacity: var(--dot-opacity, .45);
+      transform: translate(var(--dot-tx, 0px), var(--dot-ty, 0px));
+    }
   }
 
   .auth-cta:hover:not(:disabled) {
@@ -639,28 +672,66 @@
 /* ── Responsive — tablet ─────────────────────────────────── */
 
 @media (max-width: 1023px) {
-  .auth-nav { padding: 0 min(48px, 4vw); }
-  .auth-shell { grid-template-columns: 42% 58%; }
-  .auth-editorial { padding: 48px 32px 48px clamp(24px, 4vw, 48px); }
-  .auth-editorial-headline { font-size: clamp(36px, 5vw, 52px); }
-  .auth-form-panel { padding: 40px 32px 40px 20px; }
+  .auth-nav {
+    padding: 0 min(48px, 4vw);
+  }
+
+  .auth-shell {
+    grid-template-columns: 42% 58%;
+  }
+
+  .auth-editorial {
+    padding: 48px 32px 48px clamp(24px, 4vw, 48px);
+  }
+
+  .auth-editorial-headline {
+    font-size: clamp(36px, 5vw, 52px);
+  }
+
+  .auth-form-panel {
+    padding: 40px 32px 40px 20px;
+  }
 }
 
 @media (max-width: 860px) {
-  .auth-shell { grid-template-columns: 40% 60%; }
-  .auth-editorial-eyebrow { font-size: 24px; margin-bottom: 18px; }
-  .auth-editorial-headline { font-size: clamp(32px, 5.5vw, 46px); }
-  .auth-editorial-tagline { font-size: 14px; }
-  .auth-form-panel { padding: 36px 28px 36px 16px; }
-  .auth-form-surface { padding: 28px 28px; }
+  .auth-shell {
+    grid-template-columns: 40% 60%;
+  }
+
+  .auth-editorial-eyebrow {
+    font-size: 24px;
+    margin-bottom: 18px;
+  }
+
+  .auth-editorial-headline {
+    font-size: clamp(32px, 5.5vw, 46px);
+  }
+
+  .auth-editorial-tagline {
+    font-size: 14px;
+  }
+
+  .auth-form-panel {
+    padding: 36px 28px 36px 16px;
+  }
+
+  .auth-form-surface {
+    padding: 28px 28px;
+  }
 }
 
 /* ── Responsive — mobile ─────────────────────────────────── */
 
 @media (max-width: 767px) {
-  .auth-page::before { inset: 0 -10% 0 -10%; opacity: .07; }
+  .auth-page::before {
+    inset: 0 -10% 0 -10%;
+    opacity: .07;
+  }
 
-  .auth-nav { height: 64px; padding: 0 24px; }
+  .auth-nav {
+    height: 64px;
+    padding: 0 24px;
+  }
 
   .auth-shell {
     grid-template-columns: 1fr;
@@ -675,12 +746,24 @@
     animation-delay: .06s;
   }
 
-  .auth-editorial-eyebrow { font-size: 22px; margin-bottom: 12px; }
-  .auth-editorial-headline { font-size: clamp(34px, 10vw, 48px); margin-bottom: 12px; }
-  .auth-editorial-tagline { font-size: 14px; }
+  .auth-editorial-eyebrow {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .auth-editorial-headline {
+    font-size: clamp(34px, 10vw, 48px);
+    margin-bottom: 12px;
+  }
+
+  .auth-editorial-tagline {
+    font-size: 14px;
+  }
 
   /* Hide dots on mobile editorial side — keep behind form */
-  .auth-dots-layer { display: none; }
+  .auth-dots-layer {
+    display: none;
+  }
 
   .auth-form-panel {
     padding: 24px 24px 48px;
@@ -695,13 +778,32 @@
     animation-delay: .25s;
   }
 
-  .auth-form-heading { font-size: clamp(22px, 7vw, 28px); }
-  .auth-cta { height: 50px; }
-  .auth-input { height: 46px; font-size: 16px; } /* 16px prevents iOS zoom */
+  .auth-form-heading {
+    font-size: clamp(22px, 7vw, 28px);
+  }
+
+  .auth-cta {
+    height: 50px;
+  }
+
+  .auth-input {
+    height: 46px;
+    font-size: 16px;
+  }
+
+  /* 16px prevents iOS zoom */
 }
 
 @media (max-width: 400px) {
-  .auth-editorial { padding: 28px 20px 20px; }
-  .auth-form-panel { padding: 16px 20px 40px; }
-  .auth-form-surface { padding: 24px 20px; }
+  .auth-editorial {
+    padding: 28px 20px 20px;
+  }
+
+  .auth-form-panel {
+    padding: 16px 20px 40px;
+  }
+
+  .auth-form-surface {
+    padding: 24px 20px;
+  }
 }

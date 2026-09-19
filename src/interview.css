@@ -1,0 +1,921 @@
+/* ═══════════════════════════════════════════════════════════════
+   PrepTalk — Live Interview Experience
+   Scoped styles for the interview screen only.
+   Does NOT override dashboard, home, auth, or sidebar styles.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Interview Page Shell ─────────────────────────────────────── */
+.interview-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fafaf8;
+  position: relative;
+  overflow: hidden;
+  font-family: 'DM Sans', Arial, sans-serif;
+  color: #0a0c1b;
+}
+
+/* ── Subtle Grid Background (fades in center) ───────────────── */
+.interview-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 20%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,1) 100%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, transparent 20%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,1) 100%);
+}
+
+/* ── Outer border / page radius ───────────────────────────────── */
+.interview-frame {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 36px;
+}
+
+/* ── Header ───────────────────────────────────────────────────── */
+.interview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0 0;
+  flex-shrink: 0;
+}
+
+/* ── Interviewer Badge ────────────────────────────────────────── */
+.interviewer-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid #eeedf0;
+  border-radius: 52px;
+  padding: 8px 20px 8px 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.interviewer-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.interviewer-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.interviewer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.interviewer-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0a0c1b;
+  line-height: 1.2;
+}
+
+.interviewer-role {
+  font-size: 10px;
+  font-weight: 600;
+  color: #7b8399;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+/* ── Session Timer ────────────────────────────────────────────── */
+.session-timer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f5f5f3;
+  border: 1px solid #ebebea;
+  border-radius: 40px;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #2c2f3e;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  flex-shrink: 0;
+}
+
+/* ── Interview Stage (main content area) ──────────────────────── */
+.interview-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  padding: 20px 0;
+  min-height: 0;
+}
+
+/* ── AI Orb Container ─────────────────────────────────────────── */
+.ai-orb-container {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-orb {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Main sphere with multiple gradient layers */
+.ai-orb-sphere {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.7) 0%, transparent 45%),
+    radial-gradient(circle at 65% 70%, rgba(232,121,249,0.5) 0%, transparent 50%),
+    radial-gradient(circle at 30% 65%, rgba(168,85,247,0.7) 0%, transparent 50%),
+    radial-gradient(circle at 70% 35%, rgba(251,191,146,0.5) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(192,132,252,0.9) 0%, rgba(139,92,246,0.6) 60%, rgba(109,40,217,0.4) 100%);
+  box-shadow:
+    0 0 60px rgba(168,85,247,0.25),
+    0 0 120px rgba(168,85,247,0.1),
+    inset 0 0 40px rgba(255,255,255,0.15);
+  animation: orbFloat 6s ease-in-out infinite;
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+
+/* Outer glow ring */
+.ai-orb-glow {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(192,132,252,0.12) 0%, transparent 70%);
+  animation: orbGlow 4s ease-in-out infinite alternate;
+}
+
+/* Internal highlight sparkles */
+.ai-orb-highlight {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  pointer-events: none;
+}
+
+.ai-orb-highlight:nth-child(1) {
+  width: 6px;
+  height: 6px;
+  top: 30%;
+  left: 25%;
+  animation: sparkle 3s ease-in-out infinite 0.5s;
+}
+
+.ai-orb-highlight:nth-child(2) {
+  width: 4px;
+  height: 4px;
+  top: 55%;
+  left: 65%;
+  animation: sparkle 4s ease-in-out infinite 1.2s;
+}
+
+.ai-orb-highlight:nth-child(3) {
+  width: 5px;
+  height: 5px;
+  top: 40%;
+  right: 28%;
+  animation: sparkle 3.5s ease-in-out infinite 2s;
+  background: rgba(251,191,146,0.7);
+}
+
+.ai-orb-highlight:nth-child(4) {
+  width: 3px;
+  height: 3px;
+  bottom: 32%;
+  left: 38%;
+  animation: sparkle 4.5s ease-in-out infinite 0.8s;
+  background: rgba(251,146,191,0.6);
+}
+
+/* ── Orb State Animations ─────────────────────────────────────── */
+
+/* INITIALIZING — calm pulse */
+.ai-orb[data-state="INITIALIZING"] .ai-orb-sphere {
+  animation: orbFloat 6s ease-in-out infinite, orbPulseCalm 3s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+/* AI_SPEAKING — active, alive */
+.ai-orb[data-state="AI_SPEAKING"] .ai-orb-sphere {
+  animation: orbFloat 4s ease-in-out infinite, orbSpeaking 1.8s ease-in-out infinite;
+  box-shadow:
+    0 0 70px rgba(168,85,247,0.35),
+    0 0 140px rgba(168,85,247,0.15),
+    inset 0 0 40px rgba(255,255,255,0.2);
+}
+
+/* LISTENING — calm, ready */
+.ai-orb[data-state="LISTENING"] .ai-orb-sphere {
+  animation: orbFloat 7s ease-in-out infinite, orbListening 2.5s ease-in-out infinite;
+  box-shadow:
+    0 0 50px rgba(34,197,94,0.2),
+    0 0 100px rgba(168,85,247,0.1),
+    inset 0 0 30px rgba(255,255,255,0.15);
+}
+
+/* USER_SPEAKING — responsive */
+.ai-orb[data-state="USER_SPEAKING"] .ai-orb-sphere {
+  animation: orbFloat 5s ease-in-out infinite, orbUserSpeaking 1.2s ease-in-out infinite;
+  box-shadow:
+    0 0 60px rgba(59,130,246,0.25),
+    0 0 120px rgba(168,85,247,0.1),
+    inset 0 0 35px rgba(255,255,255,0.2);
+}
+
+/* PROCESSING — subtle thinking */
+.ai-orb[data-state="PROCESSING"] .ai-orb-sphere {
+  animation: orbFloat 5s ease-in-out infinite, orbProcessing 2s ease-in-out infinite;
+  opacity: 0.85;
+}
+
+/* COMPLETED — still, settled */
+.ai-orb[data-state="COMPLETED"] .ai-orb-sphere {
+  animation: none;
+  opacity: 0.6;
+}
+
+/* ERROR — subtle red tint */
+.ai-orb[data-state="ERROR"] .ai-orb-sphere {
+  animation: orbFloat 8s ease-in-out infinite;
+  opacity: 0.5;
+  filter: hue-rotate(-30deg);
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes orbGlow {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.08); opacity: 1; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+@keyframes orbPulseCalm {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+@keyframes orbSpeaking {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.06); }
+  75% { transform: scale(0.97); }
+}
+
+@keyframes orbListening {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes orbUserSpeaking {
+  0%, 100% { transform: scale(1); }
+  30% { transform: scale(1.04); }
+  60% { transform: scale(0.98); }
+}
+
+@keyframes orbProcessing {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.02); opacity: 0.95; }
+}
+
+/* ── Question Card ────────────────────────────────────────────── */
+.question-card {
+  background: #ffffff;
+  border: 1px solid #eeedf0;
+  border-radius: 18px;
+  padding: 32px 36px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+  position: relative;
+}
+
+/* Dark accent line at top */
+.question-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 36px;
+  right: 36px;
+  height: 2px;
+  background: #1a1a2e;
+  border-radius: 2px;
+}
+
+.question-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #7b8399;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  padding-top: 4px;
+}
+
+.question-label-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f59e0b;
+  flex-shrink: 0;
+}
+
+.question-text {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: #0e1329;
+  margin: 0;
+}
+
+.question-meta {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #a0a8be;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* ── Bottom Area ──────────────────────────────────────────────── */
+.interview-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 20px 0 28px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* ── Interview Status Indicator ───────────────────────────────── */
+.interview-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(245,243,255,0.8);
+  border: 1px solid #eee9fc;
+  border-radius: 40px;
+  padding: 10px 22px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #5b5f76;
+  text-transform: uppercase;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ── Interview Controls ───────────────────────────────────────── */
+.interview-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.save-exit-btn {
+  height: 44px;
+  padding: 0 22px;
+  border: 1px solid #e0e2ec;
+  background: #ffffff;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4b5475;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.save-exit-btn:hover {
+  background: #f8f9fb;
+  border-color: #d0d3de;
+}
+
+.save-exit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.end-session-btn {
+  height: 44px;
+  padding: 0 28px;
+  border: none;
+  background: #1c1917;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 14px rgba(28,25,23,0.2);
+}
+
+.end-session-btn:hover {
+  background: #0c0a09;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(28,25,23,0.3);
+}
+
+.end-session-btn:focus-visible {
+  outline: 2px solid #1c1917;
+  outline-offset: 2px;
+}
+
+.end-session-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+  flex-shrink: 0;
+}
+
+/* ── End Session Modal ────────────────────────────────────────── */
+.interview-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 7, 20, 0.55);
+  backdrop-filter: blur(6px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: interviewModalIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes interviewModalIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.interview-modal {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px 34px;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 0 24px 60px rgba(10,15,35,0.24);
+  animation: interviewModalCardIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes interviewModalCardIn {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.interview-modal h3 {
+  font: 600 22px/1.2 'Bodoni Moda', Georgia, serif;
+  letter-spacing: -0.03em;
+  margin: 0 0 10px;
+  color: #0c0e1a;
+}
+
+.interview-modal p {
+  font-size: 14px;
+  color: #6b7394;
+  line-height: 1.55;
+  margin: 0 0 24px;
+}
+
+.interview-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.modal-cancel-btn {
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 12px;
+  border: 1px solid #dce0eb;
+  background: #fff;
+  color: #4b5475;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.modal-cancel-btn:hover {
+  background: #f4f6fa;
+}
+
+.modal-cancel-btn:focus-visible {
+  outline: 2px solid #4b5475;
+  outline-offset: 2px;
+}
+
+.modal-end-btn {
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 12px;
+  border: 0;
+  background: #1c1917;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(28,25,23,0.2);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.modal-end-btn:hover {
+  background: #0c0a09;
+  transform: translateY(-1px);
+}
+
+.modal-end-btn:focus-visible {
+  outline: 2px solid #1c1917;
+  outline-offset: 2px;
+}
+
+.modal-end-btn:disabled,
+.modal-cancel-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Initialization Overlay ───────────────────────────────────── */
+.interview-init-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: rgba(250,250,248,0.92);
+  animation: initFadeIn 0.5s ease;
+}
+
+@keyframes initFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.init-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: #5b5f76;
+  letter-spacing: 0.02em;
+}
+
+.init-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.init-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #a78bfa;
+  animation: initDotBounce 1.4s ease-in-out infinite;
+}
+
+.init-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.init-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes initDotBounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-8px); opacity: 1; }
+}
+
+/* ── Error State ──────────────────────────────────────────────── */
+.interview-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 40px;
+  text-align: center;
+}
+
+.interview-error p {
+  font-size: 16px;
+  color: #5b5f76;
+  margin: 0;
+}
+
+.interview-error button {
+  height: 44px;
+  padding: 0 28px;
+  border: 1px solid #e0e2ec;
+  background: #fff;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0a0c1b;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.interview-error button:hover {
+  background: #f4f6fa;
+}
+
+/* ── Save-in-progress indicator ───────────────────────────────── */
+.saving-indicator {
+  font-size: 13px;
+  color: #8b96b2;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.saving-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #e0e2ec;
+  border-top-color: #8b5cf6;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Dev Controls (hidden in production) ──────────────────────── */
+.dev-controls {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  z-index: 9998;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  background: rgba(0,0,0,0.85);
+  border-radius: 10px;
+  padding: 8px;
+  max-width: 320px;
+}
+
+.dev-controls button {
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.08);
+  color: #e5e7eb;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.dev-controls button:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+.dev-controls button.dev-active {
+  background: rgba(139,92,246,0.5);
+  border-color: rgba(139,92,246,0.7);
+  color: #fff;
+}
+
+.dev-controls-label {
+  width: 100%;
+  font-size: 9px;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-bottom: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Responsive — Laptop Targets
+   ═══════════════════════════════════════════════════════════════ */
+
+/* 1366×768 baseline */
+@media (max-height: 800px) {
+  .interview-header {
+    padding-top: 16px;
+  }
+
+  .interview-stage {
+    gap: 40px;
+    padding: 12px 0;
+  }
+
+  .ai-orb {
+    width: 240px;
+    height: 240px;
+  }
+
+  .ai-orb-sphere {
+    width: 190px;
+    height: 190px;
+  }
+
+  .ai-orb-glow {
+    width: 225px;
+    height: 225px;
+  }
+
+  .question-card {
+    padding: 26px 30px;
+    max-width: 420px;
+  }
+
+  .question-text {
+    font-size: 16px;
+  }
+
+  .interview-bottom {
+    padding: 14px 0 20px;
+  }
+}
+
+/* Very small laptop height (768px) */
+@media (max-height: 700px) {
+  .interview-header {
+    padding-top: 10px;
+  }
+
+  .interview-stage {
+    gap: 28px;
+    padding: 6px 0;
+  }
+
+  .ai-orb {
+    width: 210px;
+    height: 210px;
+  }
+
+  .ai-orb-sphere {
+    width: 165px;
+    height: 165px;
+  }
+
+  .ai-orb-glow {
+    width: 195px;
+    height: 195px;
+  }
+
+  .question-card {
+    padding: 22px 26px;
+    max-width: 390px;
+  }
+
+  .question-text {
+    font-size: 15px;
+  }
+
+  .question-label {
+    margin-bottom: 12px;
+  }
+
+  .interview-bottom {
+    padding: 10px 0 16px;
+  }
+}
+
+/* Max-width to prevent ultra-wide stretching */
+@media (min-width: 1600px) {
+  .interview-frame {
+    max-width: 1440px;
+  }
+}
+
+/* Narrower screens */
+@media (max-width: 1024px) {
+  .interview-frame {
+    padding: 0 24px;
+  }
+
+  .interview-stage {
+    gap: 30px;
+  }
+
+  .ai-orb {
+    width: 220px;
+    height: 220px;
+  }
+
+  .ai-orb-sphere {
+    width: 180px;
+    height: 180px;
+  }
+
+  .ai-orb-glow {
+    width: 210px;
+    height: 210px;
+  }
+
+  .question-card {
+    max-width: 380px;
+    padding: 24px 26px;
+  }
+}
+
+/* Tablet / narrow */
+@media (max-width: 768px) {
+  .interview-stage {
+    flex-direction: column;
+    gap: 24px;
+    padding: 16px 0;
+  }
+
+  .ai-orb {
+    width: 200px;
+    height: 200px;
+  }
+
+  .ai-orb-sphere {
+    width: 160px;
+    height: 160px;
+  }
+
+  .ai-orb-glow {
+    width: 190px;
+    height: 190px;
+  }
+
+  .question-card {
+    max-width: 100%;
+  }
+
+  .interview-bottom {
+    flex-direction: column;
+    gap: 14px;
+  }
+}
